@@ -15,3 +15,4 @@ pymupdf==1.25.2
 python-magic
 pysqlite3-binary
 opencv-python-headless
+pdf2image
