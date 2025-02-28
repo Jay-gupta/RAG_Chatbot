@@ -2,10 +2,11 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+import os
 import nltk
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), "nltk_data"))
 
-import os
+
 import json
 
 import streamlit as st
