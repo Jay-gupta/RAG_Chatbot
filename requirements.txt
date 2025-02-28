@@ -13,4 +13,4 @@ reportlab==4.3.1
 fake_useragent==2.0.3
 pymupdf==1.25.2
 python-magic
-sqlite3==3.45.3
+pysqlite3-binary
