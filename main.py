@@ -1,3 +1,7 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import os
 import json
 
@@ -9,6 +13,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate
 from vectorize_documents import embeddings
+
 
 working_dir = os.path.dirname(os.path.abspath("__file__"))
 config_data = json.load(open(f"{working_dir}/config.json"))
