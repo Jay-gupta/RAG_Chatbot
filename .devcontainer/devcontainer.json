@@ -17,7 +17,7 @@
       ]
     }
   },
-  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; sudo apt install -y poppler-utils; echo '✅ Packages installed and Requirements met'",
+  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y < packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; sudo apt install -y poppler-utils tesseract-ocr; echo '✅ Packages installed successfully'",
   "postAttachCommand": {
     "server": "export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH && streamlit run main.py --server.enableCORS false --server.enableXsrfProtection false"
   },
