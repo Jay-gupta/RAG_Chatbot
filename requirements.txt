@@ -14,3 +14,4 @@ fake_useragent==2.0.3
 pymupdf==1.25.2
 python-magic
 pysqlite3-binary
+opencv-python-headless
