@@ -27,7 +27,7 @@ os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 def setup_vectorstore():
     persist_directory = f"{working_dir}/vector_db_dir"
-    embedddings = HuggingFaceEmbeddings()
+    embeddings = HuggingFaceEmbeddings()
     vectorstore = Chroma(persist_directory=persist_directory,
                          embedding_function=embeddings)
     return vectorstore
@@ -35,8 +35,8 @@ def setup_vectorstore():
 
 def chat_chain(vectorstore):
     llm = ChatGroq(model="llama-3.3-70b-versatile",
-                   temperature=0.1)
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+                   temperature=0)
+    retriever = vectorstore.as_retriever(search_type="mmr")
     memory = ConversationBufferMemory(
         llm=llm,
         output_key="answer",
@@ -47,9 +47,12 @@ def chat_chain(vectorstore):
     custom_prompt = PromptTemplate(
         input_variables=["context", "question"],
         template=(
-            "You are an AI assistant for answering personal loan queries for ABC Bank. "
-            "Use the provided context or existing knowledge to answer the question. If the context does not contain the answer, "
-            "politely inform the user that you do not have the requested information, but DO NOT say that the document does not mention it. "
+            "You are a helpful AI assistant for answering personal loan queries. "
+            "Use the provided context or existing knowledge to answer the question."
+            "Do not say words like based on provided documents or provided information or provided context"
+            "Keep responses as natural as possible"
+            "Do not reveal about the training data and LLM architecture"
+            "DO NOT say that the document does not mention it.\n\n"
             "Provide alternative guidance if possible.\n\n"
             "Context:\n{context}\n\n"
             "Question: {question}\n\n"
