@@ -16,3 +16,4 @@ python-magic
 pysqlite3-binary
 opencv-python-headless
 pdf2image
+pdfminer.six==20221105
